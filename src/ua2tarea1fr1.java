@@ -1,0 +1,39 @@
+/**
+ * Crea un programa en Java que lance 5 hilos. 
+ * Cada hilo incrementará una variable contador de tipo entero en 1000 unidades. 
+ * Esta variable estará compartida por todos los hilos.
+ */
+public class ua2tarea1fr1 extends Thread{
+    
+    // variable compartida por todos los hilos.
+    private static int contador=0;
+
+    public ua2tarea1fr1(){
+        contador += 1000;
+    }
+
+    /** 
+     * Crea 5 hilos y los ejecuta.
+     * @param args
+     */
+    public static void main(String[] args){
+        ua2tarea1fr1 hilo1 = new ua2tarea1fr1();
+        ua2tarea1fr1 hilo2 = new ua2tarea1fr1();
+        ua2tarea1fr1 hilo3 = new ua2tarea1fr1();
+        ua2tarea1fr1 hilo4 = new ua2tarea1fr1();
+        ua2tarea1fr1 hilo5 = new ua2tarea1fr1();
+
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
+        hilo4.start();
+        hilo5.start();
+        System.out.println(contador);
+    }
+
+    @Override
+    public void run(){
+        contador+=1000;
+    }
+
+}
