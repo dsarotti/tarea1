@@ -4,14 +4,8 @@
  * Esta variable estará compartida por todos los hilos.
  */
 public class ua2tarea1fr1 extends Thread{
-    
-    // variable compartida por todos los hilos.
-    private static int contador=0;
 
-    public ua2tarea1fr1(){
-        contador += 1000;
-    }
-
+    private static int contador;
     /** 
      * Crea 5 hilos y los ejecuta.
      * @param args
@@ -28,12 +22,19 @@ public class ua2tarea1fr1 extends Thread{
         hilo3.start();
         hilo4.start();
         hilo5.start();
+        
+        try{
+            Thread.sleep(500);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println(contador);
     }
 
     @Override
-    public void run(){
-        contador+=1000;
-    }
-
+        public void run(){
+            for (int i = 0 ; i<1000; i++){
+                contador++;
+            }
+        }
 }
