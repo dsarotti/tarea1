@@ -22,13 +22,6 @@ public class ua2tarea1fr1 extends Thread{
         hilo3.start();
         hilo4.start();
         hilo5.start();
-        
-        try{
-            Thread.sleep(500);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println(contador);
     }
 
     @Override
@@ -36,5 +29,7 @@ public class ua2tarea1fr1 extends Thread{
             for (int i = 0 ; i<1000; i++){
                 contador++;
             }
+        //Muestra el resultado después de ejecutar cada hilo
+        System.out.println(contador);
         }
 }

@@ -25,6 +25,7 @@ public class ua2tarea1fr2 extends Thread{
      * Constructor por defecto, inicia con el estado suspender = false, por lo que no hace join
      */
     public ua2tarea1fr2(){
+        suspender=false;
     }
     
     /** 
@@ -44,21 +45,27 @@ public class ua2tarea1fr2 extends Thread{
         hilo3.start();
         hilo4.start();
         hilo5.start();
-        System.out.println(contador);
+        try{
+            Thread.sleep(500);
+            System.out.println(contador);
+        }catch
     }
 
 
     @Override
     public void run(){
         try{
+            //espera al hilo de referencia si es preciso.
             if(suspender){
                 hiloReferencia.join();
             }
-            
             for (int i = 0 ; i<1000; i++){
-                
                 contador++;
             }
+
+            //Por simplicidad en lugar de mostrar cada incremento muestro la cantidad final de cada hilo.    
+            System.out.println(contador);
+
         }catch(InterruptedException e){
             e.printStackTrace();
         }
