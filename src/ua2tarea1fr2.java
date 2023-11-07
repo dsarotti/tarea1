@@ -1,7 +1,6 @@
 /**
  * Modifica el programa anterior para sincronizar el acceso a dicha 
- * variable. Lanza primero los hilos mediante la clase Thread y después
- * mediante el interfaz Runnable.
+ * variable. Lanza primero los hilos mediante la clase Thread.
  */
 public class ua2tarea1fr2 extends Thread{
     
@@ -48,24 +47,22 @@ public class ua2tarea1fr2 extends Thread{
         try{
             Thread.sleep(500);
             System.out.println(contador);
-        }catch
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     public void run(){
         try{
             //espera al hilo de referencia si es preciso.
-            if(suspender){
-                hiloReferencia.join();
-            }
+            if(suspender) hiloReferencia.join();
+            //realiza la tarea
             for (int i = 0 ; i<1000; i++){
                 contador++;
             }
-
-            //Por simplicidad en lugar de mostrar cada incremento muestro la cantidad final de cada hilo.    
+            //Por simplicidad en lugar de mostrar cada incremento muestro la cantidad final de cada hilo.
             System.out.println(contador);
-
         }catch(InterruptedException e){
             e.printStackTrace();
         }

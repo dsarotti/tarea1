@@ -1,18 +1,18 @@
 /**
  * Modifica el programa anterior para sincronizar el acceso a dicha 
- * variable. Lanza primero los hilos mediante la clase Thread y después
- * mediante el interfaz Runnable.
+ * variable. Versión con interfaz Runnable
  */
 public class ua2tarea1fr2runnable implements Runnable{
-    
-    // variable compartida por todos los hilos.
+
+    // Variable compartida por todos los hilos.
     private static int contador=0;
 
     /** 
-     * Crea 5 hilos y los ejecuta.
+     * Crea 1 hilo y lo ejecuta 5 veces
      * @param args
      */
     public static void main(String[] args){
+        //Sincronizar mediante declaración synchronized
         ua2tarea1fr2runnable hilo = new ua2tarea1fr2runnable();
 
         new Thread(hilo).start();
@@ -20,11 +20,23 @@ public class ua2tarea1fr2runnable implements Runnable{
         new Thread(hilo).start();
         new Thread(hilo).start();
         new Thread(hilo).start();
-        System.out.println(contador);
+
+        try{
+            Thread.sleep(1000);
+            System.out.println(contador);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run(){
-        contador+=1000;
+        incrementarMil();
+    }
+
+    private synchronized void incrementarMil(){
+        for (int i = 0 ; i<1000; i++){
+            contador++;
+        }
     }
 }
